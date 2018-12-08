@@ -1,0 +1,32 @@
+<h1>this is reactive form validation with the help of FormBuilder</h1>
+
+<form [formGroup]="myform">
+  <div>
+    <div>
+      User Name : <input class="form-control" formControlName="userName">
+      <p style="color:red" *ngIf="myform.get('userName').errors && myform.get('userName').touched">
+        <span *ngIf="myform.get('userName').errors['required']">User name is required t0 process
+        </span>
+     
+        <span *ngIf="myform.get('userName').errors['minlenght']">Min 3 char is required
+        </span>
+        <span *ngIf="myform.get('userName').errors['maxlenght']">Min 10 char is required
+
+        </span>
+      </p>
+    </div><br>
+    <div>
+      Passworrd :<input class="form-control" formControlName="password">
+      <p style="color:red" *ngIf="myform.get('password').errors && myform.get('password').touched">
+        <span *ngIf="myform.get('password').errors['required']">User name is required t0 process
+        </span>
+
+        <span *ngIf="myform.get('password').errors['minlenght']">Min 3 char is required</span>
+        <span *ngIf="myform.get('password').errors['maxlenght']">Min 10 char is required</span>
+      </p>
+    </div><br>
+    <div>
+      <button [disabled]="!myform.valid" class="btn btn-primary" (click)="userLogin()">Login</button>
+    </div>
+  </div>
+</form>

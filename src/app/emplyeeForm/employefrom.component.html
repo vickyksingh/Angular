@@ -1,0 +1,62 @@
+<h1>Angular</h1>
+<!-- {{employees | json}} -->
+
+<div class= "container" >
+    <div class="col-lg-12">
+        <form [formGroup]="employeform">
+            <div >
+                Name : <input  class= "form-control" formControlName="name">
+                <label style="color: red" *ngIf="employeform.get('name').errors && employeform.get('name').touched">
+                    <label *ngIf="employeform.get('name').errors['required']">Name Is required</label>
+                    <label *ngIf="employeform.get('name').errors['minlength']">Min 2 chrch Required</label>
+                    <label *ngIf="employeform.get('name').errors['maxlength']">Min 8 chrch Required</label>
+                </label>
+            </div><br>
+            <div>
+                Age : <input class="form-control" formControlName="age">
+                <label style="color: red" *ngIf="employeform.get('age').errors && employeform.get('age').touched">
+                    <label *ngIf="employeform.get('age').errors['required']">Age Is required</label>
+                    <label *ngIf="employeform.get('age').errors['minlength']">Min 2 chrch Required</label>
+                    <label *ngIf="employeform.get('age').errors['maxlength']">Min 4 chrch Required</label>
+                </label>
+            </div><br>
+            <div>
+                Salary : <input class= "form-control" formControlName="salary">
+                <label style="color: red" *ngIf="employeform.get('salary').errors && employeform.get('salary').touched">
+                    <label *ngIf="employeform.get('salary').errors['required']">Salary Is required</label>
+                    <label *ngIf="employeform.get('salary').errors['minlength']">Min 2 chrch Required</label>
+                    <label *ngIf="employeform.get('salary').errors['maxlength']">Min 6 chrch Required</label>
+                </label>
+            </div><br>
+        </form>
+            <div>
+                <button  [disabled]="!employeform.valid"  *ngIf="!btn_status" class="btn btn-primary" (click)="addEmployee()">SAVE</button>
+                <button *ngIf="btn_status" class="btn btn-primary" (click)="updateEmployee()">Update</button>
+            </div>
+    </div><br>
+
+
+
+
+
+
+
+
+    <div class="table">
+        <table class= "col-lg-12">
+            <th>Name</th><th>Age</th><th>Salary</th><th>Action</th>
+            <tr *ngFor="let emp of employees | paginate: { itemsPerPage: 4, currentPage: p }">
+                <td>{{emp.name}}</td>
+                <td>{{emp.age}}</td>
+                <td>{{emp.salary}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="removeEmployee(emp._id)">Delete</button>
+                    <button class="btn-btn-warning" (click)="editEmployee(emp)">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

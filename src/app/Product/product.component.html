@@ -1,0 +1,42 @@
+<!-- <p>
+   {{products | json}}
+</p> -->
+
+<h1>Products List</h1>
+<div *ngIf="alert_status" class="col-lg-12">
+   <app-message></app-message>
+</div>
+<p>
+   Name: <input class = form-control  [(ngModel)]="pro.name">
+</p>
+<p>
+   Cost: <input class = form-control [(ngModel)]="pro.cost">
+</p>
+<p>
+   Image: <input class =form-control [(ngModel)]="pro.image">
+</p>
+<p>
+   <button *ngIf="!btn_status" class="btn btn-primary"(click)="addproduct()">SAVE</button>
+   <button *ngIf="btn_status" class="btn btn-primary" (click)="updateProducts()">UPDATE</button>
+</p>
+<div class="container">
+   <h1>Products List</h1>
+
+<div  class= "col-lg-12">
+
+<table class= "table">
+   <th>name</th><th>cost</th><th>Image</th><th>action</th>
+   <tr *ngFor="let y of products | paginate: { itemsPerPage: 4, currentPage: p}">
+      <td>{{y.name}}</td>
+      <td>{{y.cost}}</td>
+      <td><img width=50 height=50 [src]="y.image"></td>
+      <td><button class="btn btn-danger" (click)="removeProduct(y._id)">Delete</button>
+      <button class="btn btn-primary" (click)="editproduct(y)">Edit</button></td>
+   </tr>
+</table>
+</div>
+
+<div>
+   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>

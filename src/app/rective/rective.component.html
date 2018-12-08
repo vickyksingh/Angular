@@ -1,0 +1,42 @@
+<h1>Reactive forms </h1>
+<form [formGroup]="frm">
+<div>
+  <div>
+    First Name : <input class= "form-control" formControlName="first_name">
+    <p style="color:red" *ngIf="frm.get('first_name').errors && frm.get('first_name').touched">
+      <span *ngIf="frm.get('first_name').errors['required']">Name is required</span>
+    
+    
+    <span *ngIf="frm.get('first_name').errors['minlength']">Mim 2 chractors required
+
+    </span>
+    <span *ngIf="frm.get('first_name').errors['maxlength']">Max 8 char required</span>
+    <span *ngIf="frm.get('first_name').errors['pattern']">Only Char required
+       
+    </span>
+    </p>
+    
+  </div><br>
+  <div>
+    Last Name : <input class="form-control" formControlName="last_name">
+    <p style="color:red" *ngIf="frm.get('last_name').errors && frm.get('last_name').touched">
+      <span *ngIf="frm.get('last_name').errors['required']">Last Name Is Required
+
+      </span>
+      <span *ngIf="frm.get('last_name').errors['minlength']">Min 2 lenght is required
+
+      </span>
+      <span *ngIf="frm.get('last_name').errors['maxlength']">max 8 lenght is required
+
+      </span>
+      <span *ngIf="frm.get('last_name').errors['pattern']">Only Char required
+
+      </span>
+
+    </p>
+  </div><br>
+  <div>
+    <button [disabled]="!frm.valid" class="btn btn-primary" (click)="register()">Register</button>
+  </div>
+</div>
+</form>

@@ -1,0 +1,50 @@
+
+<!-- {{employees | json}} -->
+<div class= "container">
+  <div>
+    <h1>
+      Details need to Fill
+    </h1>
+    <div>
+      <app-message></app-message>
+    </div>
+  </div>
+  <div class="col-lg-12">
+<p>
+  Name : <input class = form-control [(ngModel)]="emp.name">
+</p>
+<p>
+  Age : <input class = form-control [(ngModel)]="emp.age">
+</p>
+<p>
+  Salary : <input class = form-control [(ngModel)]="emp.salary">
+</p>
+<p>
+  <button (click)="Addemployee()">SAVE</button>
+</p>
+<p style="color: green">
+  {{status}}
+</p>
+<br>
+<div class="col-lg-12">
+  <div>
+    <h3>employee details</h3>
+  </div>
+<table class=table>
+<th>name</th><th>Age</th><th>Salary</th><th>Action</th>
+<tr *ngFor="let p of employees | paginate: { itemsPerPage: 3, currentPage: p }">
+  <td>{{p.name}}</td>
+  <td>{{p.age}}</td>
+  <td>{{p.salary}}</td>
+  <td>
+    <button (click)="deleteEmploye(p._id)">DELETE</button>
+  </td>
+</tr>
+
+</table>
+</div>
+<div class="col-lg-12">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
